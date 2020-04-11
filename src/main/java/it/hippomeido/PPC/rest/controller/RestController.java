@@ -1,33 +1,27 @@
 package it.hippomeido.PPC.rest.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import it.hippomeido.PPC.controller.SimpleController;
 import it.hippomeido.PPC.model.CommonResponse;
 import it.hippomeido.PPC.model.CreatePuzzleRequest;
-import it.hippomeido.PPC.model.CreatePuzzleResponse;
 import it.hippomeido.PPC.model.RetriveWordListResponse;
+import it.hippomeido.PPC.model.User;
 import it.hippomeido.PPC.puzzle.Puzzle;
 import it.hippomeido.PPC.util.leggiFile.FileManagerUtil;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
-@Controller
+@org.springframework.web.bind.annotation.RestController
+//@RequestMapping(value = "/rest")
 public class RestController extends SimpleController {
 
-	@RequestMapping(value = "/index.html", method = RequestMethod.GET)
-	public ModelAndView index(){
-        ModelAndView mv = new ModelAndView("index");
-        return mv;
-    }
-	  
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String index(){
+//       return "index";
+//    }
+
 	@RequestMapping(value = "/createPuzzle", method = RequestMethod.POST)
 	public @ResponseBody
 	CommonResponse<Puzzle> createPuzzle(@RequestBody CreatePuzzleRequest request){
@@ -38,11 +32,11 @@ public class RestController extends SimpleController {
         response.setData(puzzle);
         return response;
     }
-	
+
 	@RequestMapping(value = "/retriveWordList", method = RequestMethod.GET)
 	public @ResponseBody
 	RetriveWordListResponse retriveWordList() {
-		
+
 		Puzzle puzzle = new Puzzle(5, 5);
 		FileManagerUtil fm = new FileManagerUtil("D:\\PPC", puzzle);
 
@@ -60,5 +54,11 @@ public class RestController extends SimpleController {
 		response.setWordList(puzzle.getListaParole());
 		return response;
 	}
-	 
+
+  @GetMapping(produces = "application/json")
+  @RequestMapping({ "/validateLogin" })
+  public User validateLogin() {
+    return new User("User successfully authenticated");
+  }
+
 }
