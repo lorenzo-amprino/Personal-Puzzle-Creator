@@ -4,7 +4,11 @@ public class CommonResponse<T> {
 
     private T data;
 
-    public T getData() {
+  public CommonResponse(T data) {
+    this.data = data;
+  }
+
+  public T getData() {
         return data;
     }
 

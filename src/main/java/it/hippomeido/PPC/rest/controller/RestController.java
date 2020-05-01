@@ -7,7 +7,6 @@ import it.hippomeido.PPC.model.RetriveWordListResponse;
 import it.hippomeido.PPC.model.User;
 import it.hippomeido.PPC.puzzle.Puzzle;
 import it.hippomeido.PPC.util.leggiFile.FileManagerUtil;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
@@ -28,8 +27,7 @@ public class RestController extends SimpleController {
 
 		Puzzle puzzle = new Puzzle(request.getRow(), request.getCol());
 
-		CommonResponse<Puzzle> response = new CommonResponse();
-        response.setData(puzzle);
+		CommonResponse<Puzzle> response = new CommonResponse(puzzle);
         return response;
     }
 
