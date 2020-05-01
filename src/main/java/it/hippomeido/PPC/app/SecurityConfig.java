@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     List<User> utenti = repository.findAll();
 
     for (User u : utenti) {
-      auth.inMemoryAuthentication().withUser(u.getName()).password(String.format("{noop}{0}", u.getPassword())).roles(u.getRole());
+      auth.inMemoryAuthentication().withUser(u.getName()).password("{noop}" + u.getPassword()).roles(u.getRole());
     }
   }
 
