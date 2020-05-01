@@ -1,5 +1,11 @@
 package it.hippomeido.PPC.app;
 
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+import it.hippomeido.PPC.data.repositories.UserRepository;
+import it.hippomeido.PPC.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +18,13 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+  @Autowired
+  private UserRepository repository;
 
 
   @Override
@@ -27,9 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication().withUser("hipposay").password("{noop}ppc-password").roles("ADMIN");
-    auth.inMemoryAuthentication().withUser("matteo").password("{noop}ppc-password").roles("ADMIN");
-    auth.inMemoryAuthentication().withUser("maurizio").password("{noop}ppc-password").roles("ADMIN");
+    addUsers(auth);
   }
 
   @Bean
@@ -43,6 +51,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     return source;
   }
 
+  private void addUsers(AuthenticationManagerBuilder auth) throws Exception {
 
+    MongoClient mongoClient = MongoClients.create(
+      "mongodb+srv://admin:ppcAdminDB@ppc-tzcvl.mongodb.net/ppc?retryWrites=true&w=majority");
+    MongoDatabase database = mongoClient.getDatabase("ppc");
+
+    List<User> utenti = repository.findAll();
+
+    for (User u : utenti) {
+      auth.inMemoryAuthentication().withUser(u.getName()).password(String.format("{noop}{0}", u.getPassword())).roles(u.getRole());
+    }
+  }
 
 }
