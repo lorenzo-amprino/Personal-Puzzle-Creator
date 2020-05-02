@@ -4,6 +4,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import it.hippomeido.PPC.app.MongoConfig;
 import it.hippomeido.PPC.data.repositories.UserRepository;
 import it.hippomeido.PPC.model.User;
 import org.bson.Document;
@@ -20,11 +21,14 @@ class PpcApplicationTests extends ConfigTest{
   @Autowired
   private UserRepository repository;
 
+  @Autowired
+  private MongoConfig mongoConfig;
+
   @Ignore
 	@Test
   public void loadUsers(){
 
-    MongoClient mongoClient = MongoClients.create("mongodb+srv://admin:ppcAdminDB@ppc-tzcvl.mongodb.net/ppc?retryWrites=true&w=majority");
+    MongoClient mongoClient = mongoConfig.mongoClient();
     MongoDatabase database = mongoClient.getDatabase("ppc");
 
     MongoCollection<Document> collection = database.getCollection("users");
