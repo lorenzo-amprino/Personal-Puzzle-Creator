@@ -26,6 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   private UserRepository repository;
 
+  @Autowired
+  private MongoConfig mongoConfig;
+
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -53,9 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private void addUsers(AuthenticationManagerBuilder auth) throws Exception {
 
-    MongoClient mongoClient = MongoClients.create(
-      "mongodb+srv://admin:ppcAdminDB@ppc-tzcvl.mongodb.net/ppc?retryWrites=true&w=majority");
-    MongoDatabase database = mongoClient.getDatabase("ppc");
+    MongoClient mongoClient = mongoConfig.mongoClient();
 
     List<User> utenti = repository.findAll();
 
