@@ -1,17 +1,25 @@
 package it.hippomeido.PPC.puzzle;
 
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@BsonDiscriminator
+@Document
 public class Puzzle {
 
+  @BsonId
   private String id;
   private Character[][] schema;
   private List<String> listaParole;
   private List<String> paroleUsate;
   private String chiave;
   private String nome;
+  private String nPagina;
 
   public Puzzle() {
     this.listaParole = new ArrayList<String>();
@@ -124,6 +132,14 @@ public class Puzzle {
 
   public void setNome(String nome) {
     this.nome = nome;
+  }
+
+  public String getnPagina() {
+    return nPagina;
+  }
+
+  public void setnPagina(String nPagina) {
+    this.nPagina = nPagina;
   }
 
   @Override
