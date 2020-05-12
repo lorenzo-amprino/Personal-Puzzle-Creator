@@ -2,6 +2,7 @@ package it.hippomeido.PPC.puzzle;
 
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 public class Puzzle {
 
   @BsonId
-  private String id;
+  private ObjectId id;
   private Character[][] schema;
   private List<String> listaParole;
   private List<String> paroleUsate;
@@ -86,11 +87,12 @@ public class Puzzle {
 
   // getter and setter
 
-  public String getId() {
+
+  public ObjectId getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(ObjectId id) {
     this.id = id;
   }
 

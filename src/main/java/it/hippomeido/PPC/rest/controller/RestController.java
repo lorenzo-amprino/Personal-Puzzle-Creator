@@ -7,6 +7,7 @@ import it.hippomeido.PPC.model.RetriveWordListResponse;
 import it.hippomeido.PPC.model.User;
 import it.hippomeido.PPC.puzzle.Puzzle;
 import it.hippomeido.PPC.util.leggiFile.FileManagerUtil;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
@@ -26,6 +27,9 @@ public class RestController extends SimpleController {
 	CommonResponse<Puzzle> createPuzzle(@RequestBody CreatePuzzleRequest request){
 
 		Puzzle puzzle = new Puzzle(request.getRow(), request.getCol());
+		puzzle.setNome(request.getTitle());
+		puzzle.setnPagina(request.getPage()+"");
+		puzzle.setId(new ObjectId());
 
 		CommonResponse<Puzzle> response = new CommonResponse(puzzle);
         return response;

@@ -13,11 +13,11 @@ import java.io.Writer;
 
 
 public class FileManagerUtil {
-	
+
 	String path;
 	File file;
 	Puzzle puzzle;
-	
+
 	public FileManagerUtil(String path, Puzzle puzzle) {
 		this.path=path;
 	}
@@ -27,12 +27,12 @@ public class FileManagerUtil {
 		file.createNewFile();
 		this.file = file;
 	}
-	
+
 	public void writeSchema(Puzzle puzzle) throws IOException {
 		createSchemaFile(puzzle);
 		Writer wr = new FileWriter(file);
 		BufferedWriter bw = new BufferedWriter(wr);
-		
+
 		for(int i=0; i<puzzle.getSchema().length; i++) {
 			for(int j =0 ; j<puzzle.getSchema()[i].length; j++) {
 				bw.write(puzzle.getSchema()[i][j]);
@@ -41,7 +41,7 @@ public class FileManagerUtil {
 		}
 		bw.close();
 	}
-	
+
 	public void readWords(String fileName, Puzzle puzzle) throws FileNotFoundException {
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 
@@ -53,10 +53,10 @@ public class FileManagerUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
-	
+
+
+
 }
 
