@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @BsonDiscriminator
-@Document
+@Document(collection = "puzzle")
 public class Puzzle {
 
   @BsonId
-  private ObjectId id;
+  private String id;
   private Character[][] schema;
   private List<String> listaParole;
   private List<String> paroleUsate;
@@ -88,11 +88,11 @@ public class Puzzle {
   // getter and setter
 
 
-  public ObjectId getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(ObjectId id) {
+  public void setId(String id) {
     this.id = id;
   }
 

@@ -1,9 +1,7 @@
 package it.hippomeido.PPC.model;
 
-import it.hippomeido.PPC.puzzle.Puzzle;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.codecs.pojo.annotations.BsonId;
-import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -20,8 +18,7 @@ public class Rivista {
 
   private String nRivista;
 
-  @BsonProperty(useDiscriminator = true)
-  private List<Puzzle> puzzles;
+  private List<PuzzleRivista> puzzles;
 
   public Rivista(String nRivista) {
     this.nRivista = nRivista;
@@ -43,11 +40,11 @@ public class Rivista {
     this.nRivista = nRivista;
   }
 
-  public List<Puzzle> getPuzzles() {
+  public List<PuzzleRivista> getPuzzles() {
     return puzzles;
   }
 
-  public void setPuzzles(List<Puzzle> puzzles) {
+  public void setPuzzles(List<PuzzleRivista> puzzles) {
     this.puzzles = puzzles;
   }
 
