@@ -18,22 +18,9 @@ import java.io.IOException;
 @org.springframework.web.bind.annotation.RestController
 public class RestController extends SimpleController {
 
-  @Autowired
-  private DataPuzzleService dataPuzzleService;
 
-  @RequestMapping(value = "/createPuzzle", method = RequestMethod.POST)
-  public @ResponseBody
-  CommonResponse<Puzzle> createPuzzle(@RequestBody CreatePuzzleRequest request) {
 
-    Puzzle puzzle = new Puzzle(request.getRow(), request.getCol());
-    puzzle.setNome(request.getTitle());
-    puzzle.setnPagina(request.getPage() + "");
 
-    Puzzle output = dataPuzzleService.savePuzzle(puzzle);
-
-    CommonResponse<Puzzle> response = new CommonResponse(output);
-    return response;
-  }
 
 
   @GetMapping(produces = "application/json")

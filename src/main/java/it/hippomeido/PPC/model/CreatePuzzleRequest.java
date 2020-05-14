@@ -2,11 +2,14 @@ package it.hippomeido.PPC.model;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class CreatePuzzleRequest {
 
   private int col;
   private int row;
+  private List<String> wordList;
 
   private String title;
   private int page;
@@ -41,5 +44,13 @@ public class CreatePuzzleRequest {
 
   public void setPage(int page) {
     this.page = page;
+  }
+
+  public List<String> getWordList() {
+    return wordList;
+  }
+
+  public void setWordList(List<String> wordList) {
+    this.wordList = wordList;
   }
 }
