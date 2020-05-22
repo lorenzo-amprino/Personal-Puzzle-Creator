@@ -1,16 +1,18 @@
 package it.hippomeido.PPC.rest.controller;
 
 import it.hippomeido.PPC.controller.SimpleController;
+import it.hippomeido.PPC.data.DataPuzzleService;
 import it.hippomeido.PPC.data.DataRivistaService;
 import it.hippomeido.PPC.model.CommonResponse;
+import it.hippomeido.PPC.model.PuzzleRivista;
 import it.hippomeido.PPC.model.Rivista;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PrePostInvocationAttributeFactory;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/rivista")
@@ -18,6 +20,9 @@ public class RivistaController extends SimpleController {
 
   @Autowired
   private DataRivistaService dataRivistaService;
+
+  @Autowired
+  private DataPuzzleService dataPuzzleService;
 
   @PostMapping(produces = "application/json")
   @RequestMapping(value = "/create")
@@ -52,6 +57,10 @@ public class RivistaController extends SimpleController {
   @RequestMapping(value = "/delete")
   public @ResponseBody
   CommonResponse<Boolean> deleteRivista(@RequestBody String id){
+    Optional<Rivista> r = dataRivistaService.getRivistaById(id);
+
+    dataPuzzleService.deleteAll(r.get().getPuzzles().stream().map(PuzzleRivista::getId).collect(Collectors.toList()));
+
     dataRivistaService.delete(id);
     return new CommonResponse<>(true);
   }

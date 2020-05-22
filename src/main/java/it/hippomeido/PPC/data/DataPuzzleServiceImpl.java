@@ -5,7 +5,9 @@ import it.hippomeido.PPC.puzzle.Puzzle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DataPuzzleServiceImpl implements DataPuzzleService {
@@ -32,5 +34,10 @@ public class DataPuzzleServiceImpl implements DataPuzzleService {
   @Override
   public Optional<Puzzle> getPuzzleById(String id) {
     return repository.findById(id);
+  }
+
+  @Override
+  public void deleteAll(List<String> ids) {
+    repository.deleteAll(ids.stream().map(Puzzle::new).collect(Collectors.toList()));
   }
 }

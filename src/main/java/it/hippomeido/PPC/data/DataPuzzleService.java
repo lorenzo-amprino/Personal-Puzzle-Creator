@@ -15,4 +15,6 @@ public interface DataPuzzleService {
   void delete(String id);
 
   Optional<Puzzle> getPuzzleById(String id);
+
+  void deleteAll(List<String> ids);
 }

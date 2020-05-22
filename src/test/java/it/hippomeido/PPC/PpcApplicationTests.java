@@ -5,7 +5,9 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import it.hippomeido.PPC.app.MongoConfig;
+import it.hippomeido.PPC.data.repositories.TemplateRepository;
 import it.hippomeido.PPC.data.repositories.UserRepository;
+import it.hippomeido.PPC.model.Template;
 import it.hippomeido.PPC.model.User;
 import org.bson.Document;
 import org.junit.Ignore;
@@ -16,27 +18,35 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Arrays;
 
 @SpringBootTest
-class PpcApplicationTests extends ConfigTest{
+class PpcApplicationTests extends ConfigTest {
 
   @Autowired
-  private UserRepository repository;
+  private TemplateRepository repository;
 
   @Autowired
   private MongoConfig mongoConfig;
 
-  @Ignore
-	@Test
-  public void loadUsers(){
+  @Test
+  public void loadUsers() {
 
     MongoClient mongoClient = mongoConfig.mongoClient();
     MongoDatabase database = mongoClient.getDatabase("ppc");
 
     MongoCollection<Document> collection = database.getCollection("users");
 
+    Template template = new Template();
+    template.setCol(15);
+    template.setRow(25);
+    template.setHoleHeight(7);
+    template.setHoleLenght(11);
+    template.setHoleX(4);
+    template.setHoleY(7);
+    template.setIcon("icon_hole_2");
+    template.setDefaultPages(new int[]{25,31,39});
 
-    User u = new User("maurizio","ppc-password","USER");
-    User u2 = new User("matteo","ppc-password","USER");
 
-    repository.insert(Arrays.asList(u,u2));
+    repository.insert(template);
   }
+
+
 }

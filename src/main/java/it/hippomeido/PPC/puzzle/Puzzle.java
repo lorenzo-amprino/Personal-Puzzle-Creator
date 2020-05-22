@@ -26,6 +26,10 @@ public class Puzzle {
     this.listaParole = new ArrayList<String>();
   }
 
+  public Puzzle(String id) {
+    this.id = id;
+  }
+
   public Puzzle(int row, int col) {
     this.listaParole = new ArrayList<String>();
     this.schema = new Character[row][col];
