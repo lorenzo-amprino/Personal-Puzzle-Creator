@@ -59,8 +59,9 @@ public class RivistaController extends SimpleController {
   CommonResponse<Boolean> deleteRivista(@RequestBody String id){
     Optional<Rivista> r = dataRivistaService.getRivistaById(id);
 
-    dataPuzzleService.deleteAll(r.get().getPuzzles().stream().map(PuzzleRivista::getId).collect(Collectors.toList()));
-
+    if(r.get().getPuzzles() != null && !r.get().getPuzzles().isEmpty()) {
+      dataPuzzleService.deleteAll(r.get().getPuzzles().stream().map(PuzzleRivista::getId).collect(Collectors.toList()));
+    }
     dataRivistaService.delete(id);
     return new CommonResponse<>(true);
   }

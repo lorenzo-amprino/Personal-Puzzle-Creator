@@ -26,6 +26,7 @@ class PpcApplicationTests extends ConfigTest {
   @Autowired
   private MongoConfig mongoConfig;
 
+  @Ignore
   @Test
   public void loadUsers() {
 
@@ -48,5 +49,12 @@ class PpcApplicationTests extends ConfigTest {
     repository.insert(template);
   }
 
+  @Test
+  public void prova(){
+    String i1 = "uno";
+    String i2 = "due";
+
+    System.out.println(String.format("interpolazione %s - %s", i1, i2));
+}
 
 }
