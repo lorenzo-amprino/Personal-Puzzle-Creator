@@ -27,7 +27,7 @@ public class PuzzleController {
   public @ResponseBody
   CommonResponse<Puzzle> createPuzzle(@RequestBody CreatePuzzleRequest request) {
 
-    Puzzle puzzle = new Puzzle(request.getRow(), request.getCol());
+    Puzzle puzzle = new Puzzle(request.getTemplate().getRow(), request.getTemplate().getCol());
     puzzle.setListaParole(request.getWordList());
     puzzle.setNome(request.getTitle());
     puzzle.setnPagina(request.getPage() + "");

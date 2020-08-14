@@ -10,6 +10,7 @@ public class CreatePuzzleRequest {
   private int col;
   private int row;
   private List<String> wordList;
+  private Template template;
 
   private String title;
   private int page;
@@ -44,6 +45,14 @@ public class CreatePuzzleRequest {
 
   public void setPage(int page) {
     this.page = page;
+  }
+
+  public Template getTemplate() {
+    return template;
+  }
+
+  public void setTemplate(Template template) {
+    this.template = template;
   }
 
   public List<String> getWordList() {
