@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler d-lg-none" type="button" (click)="isShown = !isShown"
+    [attr.aria-expanded]="!isShown" aria-controls="navbarNavAltMarkup" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" routerLink="#">Navbar</a>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [ngClass]="{ 'show': isShown }">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/rivista">Rivista</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/create">Puzzle</a>
+      </li>
+    </ul>
+    <div class="navbar-nav">
+        <a class="nav-link" (click)="goBack()">Indietro</a>
+      </div>
+      <div class="navbar-nav">
+          <a class="nav-link" (click)="goForward()">Avanti</a>
+        </div>
+    <div class="navbar-nav">
+      <button class="nav-link red" routerLink="/logout">Logout</button>
+    </div>
+  </div>
+</nav>

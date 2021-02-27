@@ -1,0 +1,24 @@
+<div class="col-md-8">
+    <table>
+        <tbody>
+            <colgroup>
+            </colgroup>
+            <tr>
+                <td class="col-md-6">Lunghezza</td>
+                <td class="col-md-6">N°</td>
+            </tr>
+            <tr *ngFor="let stat of paroleService.statistiche">
+                <td> Parole di <strong>{{stat.key}}</strong> caratteri</td>
+                <td class="text-right">{{stat.value}}</td>
+            </tr>
+            <tr>
+                <td><hr></td>
+                <td><hr></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-right">Totale parole: {{paroleService.totParole}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

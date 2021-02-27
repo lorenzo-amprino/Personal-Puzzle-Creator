@@ -1,0 +1,9 @@
+<div class="mrg-t-10 container">
+    <div class="col-md-12 panel-body">
+        <label>
+            Aggiungi parola:
+            <input class="col-md-12" type="text" [formControl]="parola">
+        </label>
+        <button type="button" (click)="aggiungi(parola.value)">aggiungi</button>
+    </div>
+</div>

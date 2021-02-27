@@ -1,0 +1,28 @@
+<div class="row container">
+    <div class="center col-md-12"><h3>Aggiungi Puzzle</h3></div>
+    <div class="col-md-6 form-group">
+        <form [formGroup]="paginaForm" (ngSubmit)="onSubmit()">
+            <label>
+                pagina:
+                <select class="form-control" id="page" required formControlName="page">
+                    <option *ngFor="let page of pages" [value]="page.val">{{page.label}}</option>
+                </select>
+            </label>
+            <label>
+                titolo:
+                <input type="text" class="form-control" formControlName="title">
+            </label>
+            <label>
+                template:
+                <select class="form-control" id="template" required formControlName="template">
+                    <option *ngFor="let template of templatesFiltered" [ngValue]="template">{{template.col}} x {{template.row}} </option>
+                </select>
+            </label>
+            <button type="submit" [disabled]="!paginaForm.valid">Crea</button>
+        </form>
+    </div>
+    <div class="col-md-6 mrg-t-20">
+        <h5>Carica Parole da file</h5>
+        <app-upload-file (fileContentOutput)="onWordsLoaded($event)"></app-upload-file>
+    </div>
+</div>

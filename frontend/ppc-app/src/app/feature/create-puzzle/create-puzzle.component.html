@@ -1,0 +1,23 @@
+<div>
+    <form [formGroup]="puzzleForm" (ngSubmit)="onSubmit()">
+        <label>
+            pagina:
+            <input type="number" formControlName="page">
+        </label>
+        <label>
+            titolo:
+            <input type="text" formControlName="title">
+        </label>
+        <label>
+            colonne:
+            <input type="number" formControlName="col">
+        </label>
+        <label>
+            righe:
+            <input type="number" formControlName="row">
+        </label>
+        <button type="submit" [disabled]="!puzzleForm.valid">Crea</button>
+    </form>
+
+    
+</div>

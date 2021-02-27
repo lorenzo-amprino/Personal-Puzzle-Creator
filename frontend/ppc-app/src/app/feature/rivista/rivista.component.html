@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-6">
+        <ul class="riviste">
+            <li *ngFor="let rivista of createRivistaService.rivisteSalvate">
+                <a routerLink="/modificaRivista/{{rivista.id}}">
+                    <span class="badge">{{rivista.nRivista}}</span> {{rivista.data | date: 'dd/MM/yyyy'}}
+                </a>
+                <button class="delete" title="delete rivista" (click)="delete(rivista.id)" >x</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-6">
+        <app-create-rivista></app-create-rivista>
+    </div>
+
+</div>

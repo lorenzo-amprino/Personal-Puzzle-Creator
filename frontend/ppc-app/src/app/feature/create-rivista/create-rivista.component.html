@@ -1,0 +1,15 @@
+<div>
+    <h3>Crea una nuova rivista</h3>
+    <form [formGroup]="rivistaForm" (ngSubmit)="onSubmit()">
+        <label>
+            numero rivista:
+            <input type="text" formControlName="nRivista">
+        </label>
+
+        <label>
+            data:
+            <input type="Date" formControlName="data">
+        </label>
+        <button type="submit" [disabled]="!rivistaForm.valid">Crea</button>
+    </form>
+</div>

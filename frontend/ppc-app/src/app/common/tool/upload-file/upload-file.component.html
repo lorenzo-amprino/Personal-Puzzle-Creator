@@ -1,0 +1,14 @@
+<div class="container">
+    <label for="file-upload" class="custom-file-upload">
+        <i class="fa fa-cloud-upload"></i> seleziona file
+    </label>
+  <input id="file-upload" type="file" (change)="onChange($event.target.files)">
+  <div *ngIf="fileContent">
+    <h3>Lista Parole:</h3>
+    <div class="panel-body overflow-auto" style="max-height: 254px;">
+      <ul class="list-group">
+          <li class="list-group-item" *ngFor="let word of fileContent">{{word}}</li>
+      </ul>
+  </div>
+  </div>
+</div>

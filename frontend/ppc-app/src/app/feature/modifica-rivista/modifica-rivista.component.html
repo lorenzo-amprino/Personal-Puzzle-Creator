@@ -1,0 +1,17 @@
+<div class="row">
+        <div class="col-md-6">
+            <ul class="riviste" *ngIf="rivista">
+                <li *ngFor="let puzzle of rivista.puzzles">
+                    <a routerLink="/modificaPuzzle/{{puzzle.id}}">
+                        <span class="badge">{{puzzle.nPagina}}</span> {{puzzle.nome}}
+                    </a>
+                    <button class="delete" title="delete puzzle" (click)="deletePuzzle(puzzle)" >x</button>
+                </li>
+            </ul>
+        </div>
+    
+        <div class="col-md-6" *ngIf="rivista">
+            <app-add-page [rivista]="rivista"></app-add-page>
+        </div>
+    
+    </div>

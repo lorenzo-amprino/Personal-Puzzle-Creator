@@ -1,0 +1,9 @@
+<div class="container">
+    <h3>Lista Parole:</h3>
+    <div class="panel-body overflow-auto" style="max-height: 296px;">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let word of paroleService.listaParole">{{word}}
+                <button class="delete" title="delete rivista" (click)="delete(word)">x</button></li>
+        </ul>
+    </div>
+</div>
